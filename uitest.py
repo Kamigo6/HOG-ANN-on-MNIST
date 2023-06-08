@@ -5,6 +5,7 @@ import cv2 as cv
 import numpy as np
 import numpy as np
 import tensorflow as tf
+from skimage.feature import hog
 
 
 class DrawCharacter:
@@ -83,12 +84,26 @@ class DrawCharacter:
         self.yold = event.y
 
 
+def extract_HOG_features(data):
+    num_samples = data.shape[0]
+    hog_features = []
+    for i in range(num_samples):
+        img = data[i]
+        feature = hog(img, orientations=9, pixels_per_cell=(
+            4, 4), cells_per_block=(3, 3))
+        hog_features.append(feature)
+    return np.array(hog_features)
+
+
 def load_model(path):
     model = tf.keras.models.Sequential([
-        tf.keras.layers.Flatten(input_shape=(28, 28)),
+        tf.keras.layers.Flatten(input_shape=(2025, )),
+        tf.keras.layers.Dense(512, activation='relu'),
+        tf.keras.layers.Dropout(0.5),
+        tf.keras.layers.BatchNormalization(),
         tf.keras.layers.Dense(128, activation='relu'),
         tf.keras.layers.Dropout(0.25),
-        # tf.keras.layers.BatchNormalization(),
+        tf.keras.layers.BatchNormalization(),
         tf.keras.layers.Dense(10, activation='softmax')
     ])
     loss_fn = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
@@ -102,8 +117,9 @@ def predict(model, image):
     labels = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
     image = image / 255.0
-    image = np.reshape(image, (1, image.shape[0], image.shape[1], 1))
-    prediction = model.predict(image)
+    image = np.reshape(image, (1, image.shape[0], image.shape[1]))
+    image_features = extract_HOG_features(image)
+    prediction = model.predict(image_features)
     best_predictions = dict()
 
     for i in range(3):
@@ -117,9 +133,10 @@ def predict(model, image):
             break
 
     return best_predictions
+    # return image.shape
 
 
-model = load_model("D:\Project\ANN\\test02.h5")
+model = load_model("D:\Project\ANN\HOGtest.h5")
 
 if __name__ == "__main__":
     root = tk.Tk()
