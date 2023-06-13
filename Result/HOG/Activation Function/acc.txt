@@ -1,4 +1,4 @@
-relu: 0.968
-sigmoid: 0.968
-tanh: 0.9685
-LeakyReLU: 0.9681
+relu: val_loss: 0.0574 - val_accuracy: 0.9842
+sigmoid: val_loss: 0.0686 - val_accuracy: 0.9810
+tanh: val_loss: 0.0683 - val_accuracy: 0.9828
+LeakyReLU: val_loss: 0.0666 - val_accuracy: 0.9817

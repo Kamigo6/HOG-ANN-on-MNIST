@@ -96,10 +96,14 @@ def extract_HOG_features(data):
 
 
 def load_model(path):
+    droprate = 0.5
     model = tf.keras.models.Sequential([
-        tf.keras.layers.Flatten(input_shape=(1764, )),
+        tf.keras.layers.Flatten(input_shape=(1764,)),
+        tf.keras.layers.Dense(1024, activation='relu'),
+        tf.keras.layers.Dropout(droprate),
+        tf.keras.layers.BatchNormalization(),
         tf.keras.layers.Dense(512, activation='relu'),
-        tf.keras.layers.Dropout(0.35),
+        tf.keras.layers.Dropout(droprate),
         tf.keras.layers.BatchNormalization(),
         tf.keras.layers.Dense(10, activation='softmax')
     ])
@@ -133,7 +137,7 @@ def predict(model, image):
     # return image.shape
 
 
-model = load_model("D:\Project\ANN\\best_model.h5")
+model = load_model("D:\Project\ANN\\HOG_noise_best.h5")
 
 if __name__ == "__main__":
     root = tk.Tk()

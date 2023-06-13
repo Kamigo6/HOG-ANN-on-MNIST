@@ -1,0 +1,4 @@
+None: val_loss: 0.1081 - val_accuracy: 0.9850
+Batch Normalization: val_loss: 0.0694 - val_accuracy: 0.9858
+Dropout 0.6 and Batch Normalization: val_loss: 0.0628 - val_accuracy: 0.9823
+Dropout 0.5 and Batch Normalization: val_loss: 0.0613 - val_accuracy: 0.9837
