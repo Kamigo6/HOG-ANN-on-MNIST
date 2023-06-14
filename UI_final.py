@@ -137,7 +137,7 @@ def predict(model, image):
     # return image.shape
 
 
-model = load_model("D:\Project\ANN\\HOG_noise_best.h5")
+model = load_model("D:\Project\ANN\\best_model.h5")
 
 if __name__ == "__main__":
     root = tk.Tk()

@@ -1,4 +1,4 @@
-relu: 0.968
+relu: 0.9685
 sigmoid: 0.968
-tanh: 0.9685
+tanh: 0.968
 LeakyReLU: 0.9681
