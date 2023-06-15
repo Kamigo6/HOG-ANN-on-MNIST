@@ -35,15 +35,17 @@ cd your-repository
 pip install -r requirements.txt
 ```
 # Structure of file/folder
-Files:
-UI_final.py for running the UI
-best_model.h5 is the best model we have trained (use to run the UI)
-tmp.png is the image produced when you run the UI 
-Folders:
-“Code” for the main code of our project which includes 2 subfolders: “HOG” (contains codes for training the HOG model ) and “Pixel” (contains codes for training the Pixel model)
-“Data” for the code to extract data, visualize data and test noise 
-“Result” for the result we have found for both HOG and Pixel model which contains the network architecture, learning rate, dropout, batch normalization, final result and some other experiment
-“Model” for the models we have trained
+1. Files:
+- UI_final.py for running the UI
+- best_model.h5 is the best model we have trained (use to run the UI)
+- tmp.png is the image produced when you run the UI
+- Report.pdf is the report for this project
+- requirement.txt is the required modules to run this project
+2. Folders:
+- “Code” for the main code of our project which includes 2 subfolders: “HOG” (contains codes for training the HOG model ) and “Pixel” (contains codes for training the Pixel model)
+- “Data” for the code to extract data, visualize data and test noise 
+- “Result” for the result we have found for both HOG and Pixel model which contains the network architecture, learning rate, dropout, batch normalization, final result and some other experiment
+- “Model” for the models we have trained
 # Usage
 If you want to train the model, please run the “HOG_ANN.ipynb”/“HOG_ANN_noise.ipynb” or “ANN.ipynb”/“ANN_noise.ipynb”
 (We highly recommend the google colab)
